@@ -1,22 +1,25 @@
 package main
 
-import io.CryptographyService
-import kotlinx.coroutines.runBlocking
+import cryptography.CryptographyService
+import utils.TimeUtils.measureInMillis
 
-/*
-* Running suspend function, but on the same thread.
-* What happens is that the execution of encrypt blocks the thread.
-* */
-
-suspend fun main() = runBlocking {
-    println("current thread: ${Thread.currentThread().name}")
+//save account use case
+fun main() {
 
     val cryptographyService = CryptographyService()
 
-    val cpf = "123.456.789-10"
+    val input = mapOf(
+        "name" to "Chih",
+        "cpf" to "123.456.789-10",
+        "account" to "123-4",
+        "branch" to "765",
+        "password" to "password123"
+    )
 
-    val encryptedCpf = cryptographyService.encrypt(cpf)
-    println("Back to runBlocking")
-
-    println(encryptedCpf)
+    measureInMillis {
+        val encryptedInput = input.mapKeys { (_, value) ->
+            cryptographyService.encrypt(value)
+        }
+        println(encryptedInput)
+    }
 }
