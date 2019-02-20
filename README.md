@@ -15,4 +15,4 @@ We can provide the dispatcher in tow different ways:
 1. Explicitly set the dispatcher that will be used
 2. Inferred by the coroutine scope. 
 
-### 
+- It is fine to have suspend function running inside async builder

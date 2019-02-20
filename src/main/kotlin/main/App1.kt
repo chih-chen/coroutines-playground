@@ -1,11 +1,21 @@
 package main
 
 import cryptography.CryptographyService
-import utils.TimeUtils.measureInMillis
+import utils.Utils.log
 
-//save account use case
-fun main() {
+/*
+* Not async encryption strategy
+* */
+suspend fun main() {
 
+    usecase()
+
+    println("Finish use case")
+
+    Thread.sleep(5000)
+}
+
+suspend fun usecase() {
     val cryptographyService = CryptographyService()
 
     val input = mapOf(
@@ -16,10 +26,13 @@ fun main() {
         "password" to "password123"
     )
 
-    measureInMillis {
-        val encryptedInput = input.mapKeys { (_, value) ->
-            cryptographyService.encrypt(value)
-        }
-        println(encryptedInput)
+    val start = System.currentTimeMillis()
+    val encryptedInput = input.mapValues { (_, value) ->
+        log()
+        cryptographyService.encrypt(value)
     }
+    val end = System.currentTimeMillis()
+    log("${end - start} ms")
+
+    log(encryptedInput.mapValues { it.value }.toString())
 }

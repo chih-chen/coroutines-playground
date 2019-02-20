@@ -1,8 +1,13 @@
 package cryptography
 
+import kotlinx.coroutines.delay
+import utils.Utils.log
+
 class CryptographyService {
 
-    fun encrypt(data: String): String {
+    suspend fun encrypt(data: String): String {
+        log("encrypting $data")
+        delay(5000)
         return "encrypted.$data"
     }
 
