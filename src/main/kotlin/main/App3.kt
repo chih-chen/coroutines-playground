@@ -7,7 +7,8 @@ import kotlinx.coroutines.async
 import utils.Utils.log
 
 /*
-* Async encryption strategy
+* Async encryption strategy, but fails.
+* Notice when the first fail, all others are still running, they are not cancelled = leak.
 * */
 suspend fun main() {
 
@@ -33,7 +34,7 @@ private suspend fun usecase() {
     val encryptedInput = input.mapValues { (_, value) ->
         log("Starting...")
         CoroutineScope(Dispatchers.Default).async {
-            cryptographyService.encrypt(value)
+            cryptographyService.encryptWithError(value)
         }
     }
     val end = System.currentTimeMillis()
