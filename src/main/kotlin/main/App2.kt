@@ -1,12 +1,15 @@
 package main
 
 import cryptography.CryptographyService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import utils.Utils.log
 
 /*
 * Not async encryption strategy
 * */
-private suspend fun main() {
+suspend fun main() {
 
     usecase()
 
@@ -29,10 +32,12 @@ private suspend fun usecase() {
     val start = System.currentTimeMillis()
     val encryptedInput = input.mapValues { (_, value) ->
         log("Starting...")
-        cryptographyService.encrypt(value)
+        CoroutineScope(Dispatchers.Default).async {
+            cryptographyService.encrypt(value)
+        }
     }
     val end = System.currentTimeMillis()
     log("${end - start} ms")
 
-    log(encryptedInput.mapValues { it.value }.toString())
+    log(encryptedInput.mapValues { it.value.await() }.toString())
 }
