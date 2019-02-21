@@ -1,5 +1,6 @@
 package cryptography
 
+import cryptography.CryptographyStatus.resolve
 import kotlinx.coroutines.delay
 import utils.Utils.log
 
@@ -10,7 +11,10 @@ class CryptographyService {
     * */
     suspend fun encrypt(data: String): String {
         log("Encrypting $data")
-        delay(5000)
+        repeat(5) {
+            resolve(it, data)
+            delay(1000)
+        }
         log("Done encrypting $data")
         return "encrypted.$data"
     }
