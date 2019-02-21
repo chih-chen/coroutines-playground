@@ -4,6 +4,7 @@ import cryptography.CryptographyService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import utils.Utils.log
 
 /*
@@ -16,7 +17,7 @@ suspend fun main() {
 
     println("Finish use case")
 
-    Thread.sleep(5000)
+    delay(5000)
 }
 
 private suspend fun usecase() {
