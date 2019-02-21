@@ -30,9 +30,12 @@ private suspend fun usecase(cryptographyService: CryptographyService) {
     )
 
     val start = System.currentTimeMillis()
-    val encryptedInput = input.mapValues { (_, value) ->
-        CoroutineScope(Dispatchers.Default).async {
-            cryptographyService.encryptWithError(value)
+    val encryptedInput = input.mapValues { (key, value) ->
+        CoroutineScope(Dispatchers.IO).async {
+            when (key) {
+                "name" -> cryptographyService.encryptWithError(value)
+                else -> cryptographyService.encrypt(value)
+            }
         }
     }
     val end = System.currentTimeMillis()

@@ -2,7 +2,6 @@ package cryptography
 
 import cryptography.CryptographyStatus.resolve
 import kotlinx.coroutines.delay
-import utils.Utils.log
 
 class CryptographyService {
 
@@ -18,9 +17,7 @@ class CryptographyService {
     }
 
     suspend fun encryptWithError(data: String): String {
-        log("Encrypting $data")
-        delay(5000)
-        throw UnsupportedOperationException()
+        throw UnsupportedOperationException(data)
     }
 
     fun decrypt(data: String): String {
