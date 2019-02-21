@@ -4,21 +4,19 @@ import cryptography.CryptographyService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import utils.Utils.log
 
 /*
 * Async encryption strategy, but fails.
 * Notice when the first fail, all others are still running, they are not cancelled = leak.
 * */
-suspend fun main() {
+fun main() = runBlocking {
     val cryptographyService = CryptographyService()
 
     usecase(cryptographyService)
 
     println("Finish use case")
-
-    delay(5000)
 }
 
 private suspend fun usecase(cryptographyService: CryptographyService) {
