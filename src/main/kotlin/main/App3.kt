@@ -12,16 +12,16 @@ import utils.Utils.log
 * Notice when the first fail, all others are still running, they are not cancelled = leak.
 * */
 suspend fun main() {
+    val cryptographyService = CryptographyService()
 
-    usecase()
+    usecase(cryptographyService)
 
     println("Finish use case")
 
     delay(5000)
 }
 
-private suspend fun usecase() {
-    val cryptographyService = CryptographyService()
+private suspend fun usecase(cryptographyService: CryptographyService) {
 
     val input = mapOf(
         "name" to "Chih",

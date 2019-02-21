@@ -8,16 +8,16 @@ import utils.Utils.log
 * Not async encryption strategy
 * */
 suspend fun main() {
+    val cryptographyService = CryptographyService()
 
-    usecase()
+    usecase(cryptographyService)
 
     println("Finish use case")
 
     delay(5000)
 }
 
-private suspend fun usecase() {
-    val cryptographyService = CryptographyService()
+private suspend fun usecase(cryptographyService: CryptographyService) {
 
     val input = mapOf(
         "name" to "Chih",

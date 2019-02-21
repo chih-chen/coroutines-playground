@@ -12,15 +12,16 @@ import utils.Utils.log
 * */
 suspend fun main() {
 
-    usecase()
+    val cryptographyService = CryptographyService()
+
+    usecase(cryptographyService)
 
     println("Finish use case")
 
     delay(5000)
 }
 
-private suspend fun usecase() {
-    val cryptographyService = CryptographyService()
+private suspend fun usecase(cryptographyService: CryptographyService) {
 
     val input = mapOf(
         "name" to "Chih",
