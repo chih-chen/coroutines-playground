@@ -10,12 +10,10 @@ class CryptographyService {
     * Notice that after delay suspension point, the "callback" is executed in another thread-worker
     * */
     suspend fun encrypt(data: String): String {
-        log("Encrypting $data")
         repeat(5) {
             resolve(it, data)
             delay(1000)
         }
-        log("Done encrypting $data")
         return "encrypted.$data"
     }
 

@@ -29,7 +29,6 @@ private suspend fun usecase(cryptographyService: CryptographyService) {
 
     val start = System.currentTimeMillis()
     val encryptedInput = input.mapValues { (_, value) ->
-        log("Starting...")
         cryptographyService.encrypt(value)
     }
     val end = System.currentTimeMillis()

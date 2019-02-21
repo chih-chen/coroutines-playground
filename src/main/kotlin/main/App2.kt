@@ -33,7 +33,6 @@ private suspend fun usecase(cryptographyService: CryptographyService) {
 
     val start = System.currentTimeMillis()
     val encryptedInput = input.mapValues { (_, value) ->
-        log("Starting...")
         CoroutineScope(Dispatchers.Default).async {
             cryptographyService.encrypt(value)
         }
