@@ -6,7 +6,7 @@ import utils.Utils.log
 /*
 * Not async encryption strategy
 * */
-private suspend fun main() {
+suspend fun main() {
 
     usecase()
 
