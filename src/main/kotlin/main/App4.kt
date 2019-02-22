@@ -9,7 +9,7 @@ import utils.Utils.log
 
 /*
 * Async encryption strategy, but fails.
-* Notice when the first fail, all others are still running, they are not cancelled = leak.
+* Note how join() does not rethrow the exception. Also, it returns Unit.
 * */
 fun main() = runBlocking {
     val cryptographyService = CryptographyService()

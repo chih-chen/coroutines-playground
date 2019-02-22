@@ -9,12 +9,16 @@ import utils.Utils.log
 
 /*
 * Async encryption strategy, but fails.
-* Notice when the first fail, all others are still running, they are not cancelled = leak.
+* Note how await() rethrows the exception.
 * */
 fun main() = runBlocking {
     val cryptographyService = CryptographyService()
 
-    usecase(cryptographyService)
+    try {
+        usecase(cryptographyService)
+    } catch (e: Exception) {
+        println("Caught $e")
+    }
 
     println("Finish use case")
 }

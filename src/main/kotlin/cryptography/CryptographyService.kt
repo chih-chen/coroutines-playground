@@ -16,7 +16,8 @@ class CryptographyService {
         return "encrypted.$data"
     }
 
-    suspend fun encryptWithError(data: String): String {
+    fun encryptWithError(data: String): String {
+        println("Failing...")
         throw UnsupportedOperationException(data)
     }
 
