@@ -9,7 +9,7 @@ import utils.Utils.log
 
 /*
 * Async encryption strategy, but fails.
-* Note how join() does not rethrow the exception. Also, it returns Unit.
+* Note how the coroutines inside scope is cancelled after error.
 * */
 fun main() = runBlocking {
     val cryptographyService = CryptographyService()
