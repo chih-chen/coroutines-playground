@@ -14,11 +14,11 @@ import utils.Utils.log
 fun main() = runBlocking {
     val cryptographyService = CryptographyService()
 
-    try {
+//    try {
         usecase(cryptographyService)
-    } catch (e: Exception) {
-        println("Caught $e")
-    }
+//    } catch (e: Exception) {
+//        println("Caught $e")
+//    }
 
     println("Finish use case")
 }
